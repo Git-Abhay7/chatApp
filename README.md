@@ -1,51 +1,84 @@
-# Chat app 💬 using websockets (Nodejs, Express & Socket.io)
+# Node.js User Management and Chat App
 
-We are going to develop a chat application using Express, Websockets. Tough you can use plain websockets but we would be using a library called Socket.io - which is wrapper around Websockets, its super easy to use and provies a fallback to xhr requests until the websocket connection is established.
+This project is a Node.js application that includes user management features and a chat application. The user management system allows you to perform CRUD operations on user data, while the chat functionality enables real-time communication between users.
 
-The frontend-ui is based on Flexbox, no external UI libraries are used, so you can modify it as per your liking.
+## Features
 
----
+### User Management
 
-## What is Websocket ?
+1. **Add a New User:**
+   - Route: `POST /user/addUser`
+   - Description: Add a new user to the database.
+   - Request Body:
+     - `firstName` (string): First name of the user.
+     - `lastName` (string): Last name of the user.
+     - `age` (number): Age of the user.
+     - `city` (string): City of the user.
+     - `designation` (string): Designation of the user.
+   - Response:
+     - Status: `201 Created`
+     - JSON object containing the newly added user.
 
-WebSockets are an alternative to HTTP communication in Web Application, they offer full-duplex communication, that is, it is, bi-directional and that means the data can flow in both ways, so it can flow from client to the server and also from server to the client.
+2. **Update User:**
+   - Route: `PUT /user/updateUser`
+   - Description: Update the details of a user by their ID.
+   - Request Body:
+     - `userId` (string): ID of the user to update.
+     - `firstName` (string): Updated first name.
+     - `lastName` (string): Updated last name.
+     - `age` (number): Updated age.
+     - `city` (string): Updated city.
+     - `designation` (string): Updated designation.
+   - Response:
+     - Status: `200 OK` if the user is updated.
+     - Status: `404 Not Found` if the user with the specified ID does not exist.
+     - JSON object containing the updated user details.
 
----
+3. **Get User by ID:**
+   - Route: `GET /user/getUser/:userId`
+   - Description: Retrieve details of a specific user by their ID.
+   - URL Parameters:
+     - `userId` (string): ID of the user to retrieve.
+   - Response:
+     - Status: `200 OK` if the user is found.
+     - Status: `404 Not Found` if the user with the specified ID does not exist.
+     - JSON object containing user details.
 
-## To start setting up the project
+4. **List All Users:**
+   - Route: `GET /user/getAllUsers`
+   - Description: Retrieve a list of all users in the database.
+   - Response:
+     - Status: `200 OK`
+     - JSON array containing all users.
 
-Step 1: Clone the repo
+5. **Delete User:**
+   - Route: `DELETE /user/deleteUser/:userId`
+   - Description: Delete a user by their ID.
+   - URL Parameters:
+     - `userId` (string): ID of the user to delete.
+   - Response:
+     - Status: `200 No Content` if the user is successfully deleted.
+     - Status: `404 Not Found` if the user with the specified ID does not exist.
 
-```bash
-git clone https://github.com/trulymittal/chat-socket.io.git
-```
+### Chat Application
 
-Step 2: cd into the cloned repo and run:
+After running the application locally, open the link [http://localhost:4000/](http://localhost:4000/) in your web browser to access the chat application.
 
-```bash
-npm install
-```
+## Local Setup
 
-Step 3: Start the chat app (development mode)
+To set up and run the application locally, follow these steps:
 
-```bash
-npm run dev
-```
+1. Clone this repository to your local machine.
 
-Step 4: Start the chat app
+2. Install the required dependencies using the following command: `npm install`
 
-```bash
-npm start
-```
+3. Start the server: `npm start`
 
-## Author
+4. The API will be accessible at `http://localhost:4000`. The chat application will be available at [http://localhost:4000/](http://localhost:4000/).
 
-- [**Truly Mittal**](https://trulymittal.com)
+5. You can make HTTP requests to the defined API endpoints using your preferred API client or tools like Postman.
 
-## Contribute
+## Dependencies
 
-You can fork this repo and send me a PR.
-
-## License
-
-This project is licensed under the MIT License.
+- [Express.js](https://expressjs.com/)
+- [Socket.io](https://socket.io/)
